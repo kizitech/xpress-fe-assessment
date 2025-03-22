@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Search, Plus, Bell, Menu, LogOut, ArrowUp, ArrowDown, MoreHorizontal, ChevronDown, UsersRound, Banknote, Tags } from "lucide-react"
+import { Search, Plus, Bell, Menu, LogOut, ArrowUp, ArrowDown, MoreHorizontal, ChevronDown, UsersRound, Banknote, Tags, AlignJustify } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useRouter } from "next/navigation"
@@ -258,8 +258,14 @@ export default function Dashboard() {
       <div
         className={`${isMobile ? "fixed z-30 h-full" : ""} bg-white shadow-sm ${sidebarOpen ? "w-64" : "w-20"} transition-all duration-300 flex flex-col ${isMobile && !sidebarOpen ? "-translate-x-full" : "translate-x-0"}`}
       >
-        <div className="p-4 border-b">
-          <div className="text-blue-500 font-bold text-2xl">XPRESS</div>
+        <div className="p-4 border-b flex items-center justify-between">
+          <div className={`font-bold text-2xl ${sidebarOpen ? "text-blue-500" : "text-white w-0"}`}>XPRESS</div>
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="p-1 rounded-md text-gray-500 hover:text-gray-600 focus:outline-none"
+          >
+            <AlignJustify size={24} />
+          </button>
         </div>
         <nav className="flex-1 p-4 mt-4 flex flex-col justify-between">
           <div className="space-y-6">
@@ -305,13 +311,15 @@ export default function Dashboard() {
         <header className="bg-white shadow-sm z-10">
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center">
-              <button
-                onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="p-1 rounded-md text-gray-500 hover:text-gray-600 focus:outline-none"
-              >
-                <Menu size={24} />
-              </button>
-              <h1 className="ml-4 text-xl font-medium">Verifiers</h1>
+              <div className="md:hidden">
+                <button
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
+                  className="p-1 rounded-md text-gray-500 hover:text-gray-600 focus:outline-none"
+                >
+                  <Menu size={24} />
+                </button>
+              </div>
+              <h1 className="ml-4 text-xl font-medium">!! Verifiers</h1>
             </div>
             <div className="flex items-center space-x-4">
               <Popover>
