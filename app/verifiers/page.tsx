@@ -508,7 +508,7 @@ export default function Dashboard() {
                     </th>
                     <th className="p-4">
                       <button
-                        className="flex items-center space-x-1 focus:outline-none"
+                        className="flex text-nowrap items-center space-x-1 focus:outline-none"
                         onClick={() => requestSort("firstName")}
                       >
                         <span>First Name</span>
@@ -517,7 +517,7 @@ export default function Dashboard() {
                     </th>
                     <th className="p-4">
                       <button
-                        className="flex items-center space-x-1 focus:outline-none"
+                        className="flex text-nowrap items-center space-x-1 focus:outline-none"
                         onClick={() => requestSort("lastName")}
                       >
                         <span>Last Name</span>
@@ -526,7 +526,7 @@ export default function Dashboard() {
                     </th>
                     <th className="p-4">
                       <button
-                        className="flex items-center space-x-1 focus:outline-none"
+                        className="flex text-nowrap items-center space-x-1 focus:outline-none"
                         onClick={() => requestSort("email")}
                       >
                         <span>Email</span>
@@ -535,7 +535,7 @@ export default function Dashboard() {
                     </th>
                     <th className="p-4">
                       <button
-                        className="flex items-center space-x-1 focus:outline-none"
+                        className="flex text-nowrap items-center space-x-1 focus:outline-none"
                         onClick={() => requestSort("phoneNumber")}
                       >
                         <span>Phone Number</span>
@@ -544,7 +544,7 @@ export default function Dashboard() {
                     </th>
                     <th className="p-4">
                       <button
-                        className="flex items-center space-x-1 focus:outline-none"
+                        className="flex text-nowrap items-center space-x-1 focus:outline-none"
                         onClick={() => requestSort("location")}
                       >
                         <span>Location</span>
@@ -553,7 +553,7 @@ export default function Dashboard() {
                     </th>
                     <th className="p-4">
                       <button
-                        className="flex items-center space-x-1 focus:outline-none"
+                        className="flex text-nowrap items-center space-x-1 focus:outline-none"
                         onClick={() => requestSort("status")}
                       >
                         <span>Status</span>
@@ -562,7 +562,7 @@ export default function Dashboard() {
                     </th>
                     <th className="p-4">
                       <button
-                        className="flex items-center space-x-1 focus:outline-none"
+                        className="flex text-nowrap items-center space-x-1 focus:outline-none"
                         onClick={() => requestSort("lastActive")}
                       >
                         <span>Last Active</span>
@@ -583,19 +583,19 @@ export default function Dashboard() {
                           onChange={() => handleSelectRow(verifier.id)}
                         />
                       </td>
-                      <td className="p-4">{verifier.firstName}</td>
-                      <td className="p-4">{verifier.lastName}</td>
-                      <td className="p-4">{verifier.email}</td>
-                      <td className="p-4">{verifier.phoneNumber}</td>
-                      <td className="p-4">{verifier.location}</td>
-                      <td className="p-4">
+                      <td className="p-4 text-nowrap">{verifier.firstName}</td>
+                      <td className="p-4 text-nowrap">{verifier.lastName}</td>
+                      <td className="p-4 text-nowrap">{verifier.email}</td>
+                      <td className="p-4 text-nowrap">{verifier.phoneNumber}</td>
+                      <td className="p-4 text-nowrap">{verifier.location}</td>
+                      <td className="p-4 text-nowrap">
                         <span
                           className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(verifier.status)}`}
                         >
                           {verifier.status}
                         </span>
                       </td>
-                      <td className="p-4 text-sm text-gray-500">{verifier.lastActive}</td>
+                      <td className="p-4 text-nowrap text-sm text-gray-500">{verifier.lastActive}</td>
                       <td className="p-4">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
