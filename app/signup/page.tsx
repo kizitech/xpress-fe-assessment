@@ -50,7 +50,7 @@ export default function SignUp() {
     try {
       const success = await signup(fullName, email, password)
       if (success) {
-        router.push("/dashboard")
+        router.push("/verifiers")
       }
     } catch (err) {
       setError("Failed to create account")

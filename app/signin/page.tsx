@@ -26,7 +26,7 @@ export default function SignIn() {
     try {
       const success = await login(email, password)
       if (success) {
-        router.push("/dashboard")
+        router.push("/verifiers")
       }
     } catch (err) {
       setError("Invalid email or password")

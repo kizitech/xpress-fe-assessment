@@ -45,13 +45,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!isLoading) {
       // If user is not logged in and trying to access dashboard
-      if (!user && pathname.startsWith("/dashboard")) {
+      if (!user && pathname.startsWith("/verifiers")) {
         router.push("/signin")
       }
 
       // If user is logged in and trying to access auth pages
       if (user && (pathname === "/signin" || pathname === "/signup")) {
-        router.push("/dashboard")
+        router.push("/verifiers")
       }
     }
   }, [user, isLoading, pathname, router])

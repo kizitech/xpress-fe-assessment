@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Search, Plus, Bell, Menu, LogOut, ArrowUp, ArrowDown, MoreHorizontal, ChevronDown } from "lucide-react"
+import { Search, Plus, Bell, Menu, LogOut, ArrowUp, ArrowDown, MoreHorizontal, ChevronDown, UsersRound, Banknote, Tags } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useRouter } from "next/navigation"
@@ -24,268 +24,9 @@ import {
 } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 import { useAuth } from "@/context/auth-context"
-
-// Enhanced sample data for the table
-const verifiersData = [
-  {
-    id: 1,
-    firstName: "John",
-    lastName: "Smith",
-    phoneNumber: "+1 (555) 123-4567",
-    location: "New York",
-    status: "ACTIVE",
-    email: "john.smith@example.com",
-    joinDate: "2023-05-12",
-    lastActive: "2 hours ago",
-  },
-  {
-    id: 2,
-    firstName: "Jane",
-    lastName: "Williams",
-    phoneNumber: "+1 (555) 987-6543",
-    location: "Dallas",
-    status: "ACTIVE",
-    email: "jane.williams@example.com",
-    joinDate: "2023-06-18",
-    lastActive: "1 day ago",
-  },
-  {
-    id: 3,
-    firstName: "Michael",
-    lastName: "Johnson",
-    phoneNumber: "+1 (555) 234-5678",
-    location: "Chicago",
-    status: "PENDING",
-    email: "michael.johnson@example.com",
-    joinDate: "2023-07-24",
-    lastActive: "5 days ago",
-  },
-  {
-    id: 4,
-    firstName: "Emily",
-    lastName: "Brown",
-    phoneNumber: "+1 (555) 876-5432",
-    location: "Miami",
-    status: "ACTIVE",
-    email: "emily.brown@example.com",
-    joinDate: "2023-04-30",
-    lastActive: "3 hours ago",
-  },
-  {
-    id: 5,
-    firstName: "David",
-    lastName: "Jones",
-    phoneNumber: "+1 (555) 345-6789",
-    location: "Seattle",
-    status: "INACTIVE",
-    email: "david.jones@example.com",
-    joinDate: "2023-03-15",
-    lastActive: "2 weeks ago",
-  },
-  {
-    id: 6,
-    firstName: "Sarah",
-    lastName: "Miller",
-    phoneNumber: "+1 (555) 765-4321",
-    location: "Boston",
-    status: "PENDING",
-    email: "sarah.miller@example.com",
-    joinDate: "2023-08-05",
-    lastActive: "1 week ago",
-  },
-  {
-    id: 7,
-    firstName: "James",
-    lastName: "Davis",
-    phoneNumber: "+1 (555) 456-7890",
-    location: "Austin",
-    status: "ACTIVE",
-    email: "james.davis@example.com",
-    joinDate: "2023-02-28",
-    lastActive: "5 hours ago",
-  },
-  {
-    id: 8,
-    firstName: "Jennifer",
-    lastName: "Garcia",
-    phoneNumber: "+1 (555) 654-3210",
-    location: "Denver",
-    status: "INACTIVE",
-    email: "jennifer.garcia@example.com",
-    joinDate: "2023-01-10",
-    lastActive: "3 weeks ago",
-  },
-  {
-    id: 9,
-    firstName: "Robert",
-    lastName: "Rodriguez",
-    phoneNumber: "+1 (555) 567-8901",
-    location: "Phoenix",
-    status: "ACTIVE",
-    email: "robert.rodriguez@example.com",
-    joinDate: "2023-09-20",
-    lastActive: "12 hours ago",
-  },
-  {
-    id: 10,
-    firstName: "Lisa",
-    lastName: "Wilson",
-    phoneNumber: "+1 (555) 543-2109",
-    location: "Portland",
-    status: "SUSPENDED",
-    email: "lisa.wilson@example.com",
-    joinDate: "2023-10-01",
-    lastActive: "4 days ago",
-  },
-  {
-    id: 11,
-    firstName: "Thomas",
-    lastName: "Anderson",
-    phoneNumber: "+1 (555) 678-9012",
-    location: "San Francisco",
-    status: "ACTIVE",
-    email: "thomas.anderson@example.com",
-    joinDate: "2023-11-15",
-    lastActive: "1 hour ago",
-  },
-  {
-    id: 12,
-    firstName: "Jessica",
-    lastName: "Martinez",
-    phoneNumber: "+1 (555) 789-0123",
-    location: "Los Angeles",
-    status: "PENDING",
-    email: "jessica.martinez@example.com",
-    joinDate: "2023-12-05",
-    lastActive: "2 days ago",
-  },
-  {
-    id: 13,
-    firstName: "Daniel",
-    lastName: "Taylor",
-    phoneNumber: "+1 (555) 890-1234",
-    location: "San Diego",
-    status: "ACTIVE",
-    email: "daniel.taylor@example.com",
-    joinDate: "2023-10-22",
-    lastActive: "6 hours ago",
-  },
-  {
-    id: 14,
-    firstName: "Amanda",
-    lastName: "Thomas",
-    phoneNumber: "+1 (555) 901-2345",
-    location: "Houston",
-    status: "INACTIVE",
-    email: "amanda.thomas@example.com",
-    joinDate: "2023-09-14",
-    lastActive: "1 month ago",
-  },
-  {
-    id: 15,
-    firstName: "Kevin",
-    lastName: "White",
-    phoneNumber: "+1 (555) 012-3456",
-    location: "Atlanta",
-    status: "SUSPENDED",
-    email: "kevin.white@example.com",
-    joinDate: "2023-08-30",
-    lastActive: "2 months ago",
-  },
-]
-
-// Sample notifications
-const notificationsData = [
-  {
-    id: 1,
-    title: "New verifier registered",
-    description: "Sarah Miller has registered as a new verifier",
-    time: "2 hours ago",
-    read: false,
-  },
-  { id: 2, title: "Status update", description: "John Smith is now active", time: "5 hours ago", read: false },
-  {
-    id: 3,
-    title: "Account suspended",
-    description: "Kevin White's account has been suspended",
-    time: "1 day ago",
-    read: true,
-  },
-  {
-    id: 4,
-    title: "New transaction",
-    description: "Emily Brown processed a new transaction",
-    time: "2 days ago",
-    read: true,
-  },
-  {
-    id: 5,
-    title: "System update",
-    description: "The system will undergo maintenance tonight",
-    time: "3 days ago",
-    read: true,
-  },
-]
-
-// Mock data for dashboard
-const transactionsData = [
-  {
-    id: "TX123456",
-    customer: "John Smith",
-    amount: 1250.0,
-    type: "deposit",
-    date: "2025-03-20",
-    status: "completed",
-  },
-  {
-    id: "TX123457",
-    customer: "Sarah Johnson",
-    amount: 890.5,
-    type: "withdrawal",
-    date: "2025-03-19",
-    status: "completed",
-  },
-  {
-    id: "TX123458",
-    customer: "Michael Brown",
-    amount: 3500.0,
-    type: "deposit",
-    date: "2025-03-19",
-    status: "pending",
-  },
-  {
-    id: "TX123459",
-    customer: "Emily Davis",
-    amount: 750.25,
-    type: "withdrawal",
-    date: "2025-03-18",
-    status: "completed",
-  },
-  {
-    id: "TX123460",
-    customer: "Robert Wilson",
-    amount: 1800.0,
-    type: "deposit",
-    date: "2025-03-18",
-    status: "failed",
-  },
-  {
-    id: "TX123461",
-    customer: "Jennifer Taylor",
-    amount: 2100.75,
-    type: "deposit",
-    date: "2025-03-17",
-    status: "completed",
-  },
-  {
-    id: "TX123462",
-    customer: "David Martinez",
-    amount: 450.0,
-    type: "withdrawal",
-    date: "2025-03-17",
-    status: "completed",
-  },
-]
+import { verifiersData } from "@/data/verifiersData"
+import { notificationsData } from "@/data/notificationsData"
+import { transactionsData } from "@/data/transactionsData"
 
 type SortConfig = {
   key: string
@@ -520,70 +261,27 @@ export default function Dashboard() {
         <div className="p-4 border-b">
           <div className="text-blue-500 font-bold text-2xl">XPRESS</div>
         </div>
-        <nav className="flex-1 p-4 flex flex-col justify-between">
-          <div className="space-y-1">
-            <Link
-              href="/dashboard"
-              className="flex items-center space-x-3 px-3 py-2 rounded-md bg-blue-50 text-blue-600 border-l-4 border-blue-500"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <rect x="3" y="3" width="7" height="7"></rect>
-                <rect x="14" y="3" width="7" height="7"></rect>
-                <rect x="14" y="14" width="7" height="7"></rect>
-                <rect x="3" y="14" width="7" height="7"></rect>
-              </svg>
-              {sidebarOpen && <span>Dashboard</span>}
-            </Link>
+        <nav className="flex-1 p-4 mt-4 flex flex-col justify-between">
+          <div className="space-y-6">
             <Link
               href="/verifiers"
-              className="flex items-center space-x-3 px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 border-l-4 border-transparent"
+              className="flex items-center space-x-3 px-3 py-2 rounded-md bg-blue-50 text-blue-600 border-l-4 border-blue-500"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-              </svg>
+              <UsersRound />
               {sidebarOpen && <span>Verifiers</span>}
             </Link>
             <Link
-              href="/transactions"
+              href="#"
               className="flex items-center space-x-3 px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 border-l-4 border-transparent"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="12" y1="1" x2="12" y2="23"></line>
-                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-              </svg>
+              <Tags />
+              {sidebarOpen && <span>Deals</span>}
+            </Link>
+            <Link
+              href="#"
+              className="flex items-center space-x-3 px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 border-l-4 border-transparent"
+            >
+              <Banknote />
               {sidebarOpen && <span>Transactions</span>}
             </Link>
           </div>
