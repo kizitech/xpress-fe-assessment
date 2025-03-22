@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Search, Plus, Bell, Menu, LogOut, ArrowUp, ArrowDown, MoreHorizontal, ChevronDown, UsersRound, Banknote, Tags, AlignJustify } from "lucide-react"
+import { Search, Plus, Bell, LogOut, ArrowUp, ArrowDown, MoreHorizontal, ChevronDown, UsersRound, Banknote, Tags, AlignJustify } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useRouter } from "next/navigation"
@@ -259,10 +259,10 @@ export default function Dashboard() {
         className={`${isMobile ? "fixed z-30 h-full" : ""} bg-white shadow-sm ${sidebarOpen ? "w-64" : "w-20"} transition-all duration-300 flex flex-col ${isMobile && !sidebarOpen ? "-translate-x-full" : "translate-x-0"}`}
       >
         <div className="p-4 border-b flex items-center justify-between">
-          <div className={`font-bold text-2xl ${sidebarOpen ? "text-blue-500" : "text-white w-0"}`}>XPRESS</div>
+          <div className={`font-bold text-2xl ${sidebarOpen ? "text-blue-500" : "text-white w-0 hidden"}`}>XPRESS</div>
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-1 rounded-md text-gray-500 hover:text-gray-600 focus:outline-none"
+            className="rounded-md text-gray-500 hover:text-gray-600 focus:outline-none"
           >
             <AlignJustify size={24} />
           </button>
@@ -316,7 +316,7 @@ export default function Dashboard() {
                   onClick={() => setSidebarOpen(!sidebarOpen)}
                   className="p-1 rounded-md text-gray-500 hover:text-gray-600 focus:outline-none"
                 >
-                  <Menu size={24} />
+                  <AlignJustify size={24} />
                 </button>
               </div>
               <h1 className="ml-4 text-xl font-medium"><span className="text-blue-500 text-2xl font-bold">!!</span> Verifiers</h1>
