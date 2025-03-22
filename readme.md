@@ -218,7 +218,7 @@ The sidebar automatically collapses on smaller screens and can be toggled with t
 
 ## 👨‍💻 Author
 
-Created by [Kizito Ohani](https://github.com/kizitech)
+Created by [Kizito Ohani](https://www.linkedin.com/in/ohanikizito/)
 
 ---
 
