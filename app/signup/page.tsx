@@ -197,7 +197,7 @@ export default function SignUp() {
               </div>
             </div>
 
-            <div className="flex justify-between items-center pt-4">
+            <div className="flex flex-wrap justify-between items-center pt-4">
               <div className="text-sm text-gray-500">
                 Step <span className="font-medium">2</span> of 2
               </div>
