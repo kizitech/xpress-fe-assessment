@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gray-100 min-h-screen sm:overflow-hidden`}>
+      <body className={`${inter.className} bg-gray-100 min-h-screen overflow-hidden`}>
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
