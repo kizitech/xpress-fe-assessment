@@ -319,7 +319,7 @@ export default function Dashboard() {
                   <Menu size={24} />
                 </button>
               </div>
-              <h1 className="ml-4 text-xl font-medium">!! Verifiers</h1>
+              <h1 className="ml-4 text-xl font-medium"><span className="text-blue-500 text-2xl font-bold">!!</span> Verifiers</h1>
             </div>
             <div className="flex items-center space-x-4">
               <Popover>
