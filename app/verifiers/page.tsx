@@ -370,7 +370,7 @@ export default function Dashboard() {
                 </PopoverContent>
               </Popover>
               <Avatar className="h-8 w-8">
-                <AvatarImage src="/placeholder.svg" alt="User" />
+                <AvatarImage src="/placeholder.png" alt="User" />
                 <AvatarFallback>{user?.name?.charAt(0) || "U"}</AvatarFallback>
               </Avatar>
             </div>
