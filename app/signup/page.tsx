@@ -7,6 +7,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/context/auth-context"
 import { Eye, EyeOff } from "lucide-react"
+import { PendingModal } from "@/components/pending-modal"
 
 export default function SignUp() {
   const [step, setStep] = useState(1)
@@ -26,6 +27,7 @@ export default function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [isPendingModalOpen, setIsPendingModalOpen] = useState(false)
 
   const handleNextStep = (e: React.FormEvent) => {
     e.preventDefault()
@@ -50,7 +52,7 @@ export default function SignUp() {
     try {
       const success = await signup(fullName, email, password)
       if (success) {
-        router.push("/verifiers")
+        setIsPendingModalOpen(true)
       }
     } catch (err) {
       setError("Failed to create account")
@@ -220,6 +222,7 @@ export default function SignUp() {
             </div>
           </form>
         )}
+        <PendingModal isOpen={isPendingModalOpen} onClose={() => setIsPendingModalOpen(false)} />
       </div>
     </div>
   )
